@@ -57,7 +57,7 @@ FitVerse has three types of users. Each one gets their own area of the app.
 - **Settings:** gym details, opening hours and booking rules (cancellation window, weekly booking limit).
 
 ### ✨ Everywhere
-- **Public landing page** with live plans, trainers and this week's schedule.
+- **Public landing page** with a photo hero (floating, animated stats cards and a light parallax effect), plus live plans, trainers and this week's schedule.
 - **Accounts:** register, log in, forgot and reset password. You stay logged in across page reloads.
 - **Layout:** responsive, with a sidebar on desktop and a bottom navigation bar on mobile.
 - **Themes:** dark and light, remembered between visits.
@@ -163,6 +163,12 @@ Open **http://localhost:5173**. The frontend forwards all `/api` requests to the
 | `server/` | `npm run seed` | Reset the database with demo data (blocked in production) |
 | `server/` | `npm run create-admin` | Create or reset an admin account |
 
+### Changing the hero image
+
+The landing hero photo lives at `src/assets/hero-fitness-woman.webp` (1366×1024). To use a different one, replace that file and keep the same name. A dark, landscape photo works best because the edges fade into the page background.
+- **Floating cards:** their text is in `src/components/landing/Hero.jsx`.
+- **Card positions and animations:** in `src/styles/LandingHero.module.css`.
+
 ---
 
 ## Demo accounts
@@ -187,10 +193,11 @@ These are created by `npm run seed` on **your local database only**. All passwor
 FitVerse/
 ├── src/                      # React frontend
 │   ├── api/                  # Axios setup + one file per resource (classes, plans, ...)
+│   ├── assets/               # Bundled images (landing hero photo)
 │   ├── components/
 │   │   ├── common/           # Buttons, inputs, modals, tables, charts, cards...
 │   │   ├── forms/            # Login, register, workout, class, plan, trainer forms
-│   │   ├── landing/          # Landing page sections
+│   │   ├── landing/          # Landing page sections (Hero, HeroPhoto, plans, schedule...)
 │   │   ├── layout/           # Sidebar, navbar, mobile nav, page layouts
 │   │   └── trainer/          # Plan builder, attendance list
 │   ├── context/              # AuthContext (login state), ThemeContext
