@@ -1,5 +1,6 @@
 import Button from '../common/Button';
 import Icon from '../common/Icon';
+import HeroPhoto from './HeroPhoto';
 import useAuth from '../../hooks/useAuth';
 import { ROLE_HOME } from '../../utils/constants';
 import styles from '../../styles/LandingHero.module.css';
@@ -66,23 +67,17 @@ export default function Hero() {
         </div>
 
         <div className={styles.visual} aria-hidden="true">
-          <div className={styles.disc}>
-            <span className={styles.discInner} />
-          </div>
-          <span className={styles.orangeBlob} />
-          <span className={styles.ring} />
-          <span className={styles.grid} />
+          <HeroPhoto />
 
           <div className={`${styles.floatCard} ${styles.cardHeart}`}>
             <span className={styles.floatIcon} data-tone="accent">
-              <Icon name="heart" size={18} />
+              <Icon name="heart" size={16} />
             </span>
             <div>
               <small>Heart rate</small>
-              <strong>142 bpm</strong>
+              <strong>142 BPM</strong>
             </div>
             <span className={styles.pulse}>
-              <i />
               <i />
               <i />
               <i />
@@ -93,17 +88,17 @@ export default function Hero() {
 
           <div className={`${styles.floatCard} ${styles.cardStreak}`}>
             <span className={styles.floatIcon}>
-              <Icon name="flame" size={18} />
+              <Icon name="flame" size={16} />
             </span>
             <div>
               <small>Streak</small>
-              <strong>12 days</strong>
+              <strong>12 Days</strong>
             </div>
           </div>
 
           <div className={`${styles.floatCard} ${styles.cardClass}`}>
             <span className={styles.floatIcon}>
-              <Icon name="bolt" size={18} />
+              <Icon name="bolt" size={16} />
             </span>
             <div>
               <small>Next class · 6:30 PM</small>

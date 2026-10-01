@@ -18,6 +18,7 @@
 }
 
 .inner {
+  --gutter: var(--space-4);
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-7);
@@ -157,98 +158,92 @@
   color: var(--primary-text);
 }
 
-/* ---------- Visual ---------- */
+/* ---------- Visual (photo) ---------- */
 .visual {
+  --bleed: var(--gutter);
   position: relative;
-  width: 100%;
-  max-width: 520px;
-  aspect-ratio: 1;
-  margin: 0 auto;
+  /* Full-bleed on mobile: run edge to edge past the page gutter */
+  width: calc(100% + 2 * var(--bleed));
+  margin-inline: calc(-1 * var(--bleed));
+  aspect-ratio: 1366 / 1024; /* matches the image, so cards map onto it predictably */
   animation: fadeIn 900ms 200ms ease both;
 }
 
-.disc {
-  position: absolute;
-  inset: 12%;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 25%, var(--primary-hover), var(--primary) 55%);
-  box-shadow: var(--shadow-glow), var(--shadow-lg);
-  display: grid;
-  place-items: center;
-  animation: breathe 6s ease-in-out infinite;
-}
-
-.disc::before,
-.disc::after {
+/* Soft lime/orange glow that spills past the feathered photo edges */
+.visual::before {
   content: '';
   position: absolute;
-  border-radius: 50%;
-  border: 2px solid var(--primary-contrast);
-  opacity: 0.15;
+  inset: -6% -2% -4%;
+  z-index: -1;
+  background:
+    radial-gradient(45% 50% at 52% 40%, var(--primary-soft), transparent 70%),
+    radial-gradient(35% 40% at 85% 75%, var(--accent-soft), transparent 70%);
+  filter: blur(30px);
+  pointer-events: none;
 }
 
-.disc::before {
-  inset: 9%;
-}
-
-.disc::after {
-  inset: 20%;
-}
-
-.discInner {
-  width: 26%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--bg);
-  box-shadow: inset 0 0 0 10px var(--primary-contrast);
-  opacity: 0.92;
-}
-
-.orangeBlob {
+.photo {
   position: absolute;
-  width: 34%;
-  aspect-ratio: 1;
-  left: 2%;
-  bottom: 6%;
-  border-radius: 38% 62% 55% 45% / 50% 40% 60% 50%;
-  background: linear-gradient(150deg, var(--accent), var(--accent-text));
-  box-shadow: var(--shadow-lg);
-  animation: morph 9s ease-in-out infinite alternate, float 7s ease-in-out infinite;
+  inset: 0;
+  animation: floatSoft 9s ease-in-out infinite;
 }
 
-.ring {
-  position: absolute;
-  inset: 2%;
-  border-radius: 50%;
-  border: 2px dashed var(--border-strong);
-  animation: spin 50s linear infinite;
+.photoImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: translate3d(var(--px, 0), var(--py, 0), 0);
+  transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 900ms ease;
+  opacity: 0;
+  /* Feather every edge so the photo melts into the hero instead of reading as a rectangle */
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 7%, #000 76%, transparent 96%),
+    linear-gradient(to right, transparent 0%, #000 var(--fade-left, 10%), #000 var(--fade-right, 90%), transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 7%, #000 76%, transparent 96%),
+    linear-gradient(to right, transparent 0%, #000 var(--fade-left, 10%), #000 var(--fade-right, 90%), transparent 100%);
+  mask-composite: intersect;
 }
 
-.grid {
-  position: absolute;
-  width: 30%;
-  height: 22%;
-  right: 0;
-  top: 2%;
-  background-image: radial-gradient(var(--text-subtle) 1.5px, transparent 1.5px);
-  background-size: 14px 14px;
-  opacity: 0.6;
+.photo[data-loaded='true'] .photoImg {
+  opacity: 1;
 }
 
+/* ---------- Floating cards ---------- */
 .floatCard {
   position: absolute;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-lg);
-  font-size: var(--fs-sm);
-  animation: float 6s ease-in-out infinite;
+  padding: 6px var(--space-3) 6px 6px;
+  border-radius: var(--radius-md);
+  background: rgba(17, 19, 24, 0.55);
+  border: 1px solid rgba(198, 244, 50, 0.18);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35), 0 0 16px rgba(198, 244, 50, 0.05);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  color: var(--text);
+  font-size: var(--fs-xs);
   white-space: nowrap;
+  /* Float keyframes animate translate/rotate; hover uses the separate scale property so the two never fight */
+  --amp: 1;
+  will-change: translate, rotate;
+  transition:
+    scale 400ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 400ms ease,
+    box-shadow 400ms ease,
+    background-color 400ms ease;
+}
+
+.floatCard:hover {
+  scale: 1.04;
+  animation-play-state: paused;
+  background: rgba(17, 19, 24, 0.68);
+  border-color: rgba(198, 244, 50, 0.4);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4), 0 0 24px rgba(198, 244, 50, 0.16);
 }
 
 .floatCard div {
@@ -259,19 +254,19 @@
 
 .floatCard small {
   color: var(--text-muted);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
 }
 
 .floatCard strong {
   font-family: var(--font-heading);
-  font-size: var(--fs-md);
+  font-size: var(--fs-sm);
 }
 
 .floatIcon {
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: var(--radius-sm);
   background: var(--primary-soft);
   color: var(--primary-text);
@@ -282,28 +277,36 @@
   color: var(--accent-text);
 }
 
+/* Positions follow the photo: dark gym space left of her hair, right of her shoulder, and left of her elbow */
 .cardHeart {
-  top: 6%;
-  left: 0;
+  top: 15%;
+  left: 5%;
+  animation:
+    cardIn 700ms 500ms ease backwards,
+    floatHeartRate 4.6s 1.2s ease-in-out infinite;
 }
 
 .cardStreak {
-  right: 0;
-  top: 46%;
-  animation-delay: -2s;
+  top: 19%;
+  right: 4%;
+  animation:
+    cardIn 700ms 650ms ease backwards,
+    floatStreak 5.7s 1.35s ease-in-out infinite;
 }
 
 .cardClass {
-  bottom: 2%;
-  right: 8%;
-  animation-delay: -4s;
+  top: 62%;
+  left: 6%;
+  animation:
+    cardIn 700ms 800ms ease backwards,
+    floatNextClass 4.3s 1.5s ease-in-out infinite;
 }
 
 .pulse {
   display: flex;
   align-items: center;
   gap: 3px;
-  height: 24px;
+  height: 18px;
   margin-left: var(--space-1);
 }
 
@@ -320,7 +323,6 @@
 .pulse i:nth-child(3) { animation-delay: -0.4s; }
 .pulse i:nth-child(4) { animation-delay: -0.6s; }
 .pulse i:nth-child(5) { animation-delay: -0.8s; }
-.pulse i:nth-child(6) { animation-delay: -0.1s; }
 
 /* ---------- Marquee ---------- */
 .marquee {
@@ -351,32 +353,91 @@
   white-space: nowrap;
 }
 
-@media (max-width: 420px) {
+/* Phones: keep the streak card clear of the curling arm */
+@media (max-width: 479px) {
+  /* Compact value-only cards so they stay clear of her face and arm */
   .floatCard {
-    padding: 6px 10px;
+    --amp: 0.5;
+    gap: 6px;
+    padding: 4px 8px 4px 4px;
   }
-  .floatCard strong {
-    font-size: var(--fs-sm);
-  }
+  .floatCard small,
   .pulse {
     display: none;
+  }
+  .floatCard strong {
+    font-size: var(--fs-xs);
+  }
+  .floatIcon {
+    width: 22px;
+    height: 22px;
+  }
+  .cardHeart {
+    left: 4%;
+  }
+  .cardStreak {
+    top: 13%;
+    right: 3%;
+  }
+  .cardClass {
+    left: 4%;
   }
 }
 
 @media (min-width: 640px) {
   .inner {
+    --gutter: var(--space-6);
     padding: var(--space-6) var(--space-6) var(--space-8);
   }
 }
 
+/* Tablet: two columns, smaller headline, photo bleeds off the right edge */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+  .title {
+    font-size: clamp(2.75rem, 5.6vw, 3.4rem);
+  }
+  .lede {
+    font-size: var(--fs-md);
+  }
+  .visual {
+    width: calc(100% + var(--bleed));
+    margin-inline: 0 calc(-1 * var(--bleed));
+    --fade-left: 16%;
+  }
+  .floatCard small,
+  .pulse {
+    display: none;
+  }
+  .floatCard {
+    --amp: 0.75;
+    padding: 4px 10px 4px 4px;
+  }
+  .floatIcon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Desktop: right half, extending to the viewport edge */
 @media (min-width: 1024px) {
   .hero {
     padding-top: var(--space-5);
   }
   .inner {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-    gap: var(--space-6);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-5);
     min-height: calc(88vh - var(--navbar-height));
+  }
+  .visual {
+    --bleed: calc(max(0px, (100vw - var(--content-max)) / 2) + var(--gutter));
+    width: min(calc(100% + var(--bleed)), 900px);
+    margin-inline: 0;
+    --fade-left: 16%;
+    --fade-right: 94%;
   }
 }
 
@@ -391,23 +452,33 @@
   to { opacity: 1; transform: none; }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+@keyframes cardIn {
+  from { opacity: 0; scale: 0.94; }
+  to { opacity: 1; scale: 1; }
 }
 
-@keyframes breathe {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.03); }
+/* Heart rate: drifts up and to the right with a slight clockwise tilt */
+@keyframes floatHeartRate {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  50% { translate: calc(7px * var(--amp)) calc(-11px * var(--amp)); rotate: 1deg; }
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+/* Streak: the opposite way, down and to the left, tilting counter-clockwise */
+@keyframes floatStreak {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  50% { translate: calc(-6px * var(--amp)) calc(8px * var(--amp)); rotate: -0.7deg; }
 }
 
-@keyframes morph {
-  0% { border-radius: 38% 62% 55% 45% / 50% 40% 60% 50%; }
-  100% { border-radius: 58% 42% 40% 60% / 42% 58% 42% 58%; }
+/* Next class: a gentle side-to-side sway with only a little lift, so it stays easy to read */
+@keyframes floatNextClass {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  33% { translate: calc(-5px * var(--amp)) calc(-3px * var(--amp)); rotate: -0.3deg; }
+  66% { translate: calc(5px * var(--amp)) calc(-5px * var(--amp)); rotate: 0.3deg; }
+}
+
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.012); }
 }
 
 @keyframes eq {
@@ -432,9 +503,7 @@
   .ctas,
   .statChip,
   .visual,
-  .disc,
-  .orangeBlob,
-  .ring,
+  .photo,
   .floatCard,
   .pulse i,
   .liveDot,
