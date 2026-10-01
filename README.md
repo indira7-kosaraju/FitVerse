@@ -2,7 +2,7 @@
 
 **A full-stack gym and fitness management web app.** Members book classes and track their training, trainers manage their classes and clients, and admins run the whole gym from one dashboard.
 
-**🔗 Live demo:** https://YOUR-APP.onrender.com
+**🔗 Live demo:** https://fitverse-9nxd.onrender.com/
 
 ![FitVerse landing page](docs/screenshots/landing.jpg)
 
