@@ -1,0 +1,174 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr));
+  gap: var(--space-4);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5);
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .wide {
+    grid-column: 1 / -1;
+  }
+}
+
+.chartCard {
+  min-width: 0;
+  background-image: linear-gradient(160deg, var(--primary-soft) 0%, transparent 38%);
+}
+
+.figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.chart {
+  width: 100%;
+  height: 260px;
+}
+
+@media (min-width: 768px) {
+  .chart {
+    height: 300px;
+  }
+}
+
+.chartSkeleton {
+  padding-top: var(--space-2);
+}
+
+.tooltip {
+  padding: var(--space-2) var(--space-3);
+  min-width: 120px;
+}
+
+.tooltipLabel {
+  margin: 0;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.tooltipValue {
+  margin: var(--space-1) 0 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--fs-md);
+  color: var(--text);
+}
+
+/* Donut */
+.donutWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.donut {
+  position: relative;
+  width: min(100%, 240px);
+  aspect-ratio: 1;
+}
+
+.donutCenter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.donutValue {
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+
+.donutLabel {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: var(--space-1);
+}
+
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.legendItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto 3.5rem;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  font-size: var(--fs-sm);
+  transition: background var(--transition);
+}
+
+.legendItem:hover {
+  background: var(--surface-3);
+}
+
+.legendName {
+  color: var(--text);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.legendCount {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.legendPct {
+  color: var(--text-muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.chartNote {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.chartNote strong {
+  color: var(--text);
+}

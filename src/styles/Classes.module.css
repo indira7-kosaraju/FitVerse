@@ -1,0 +1,222 @@
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.weekNav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.weekLabel {
+  min-width: 10.5rem;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--fs-md);
+}
+
+.segmented {
+  display: inline-flex;
+  padding: 4px;
+  gap: 4px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+}
+
+.segment {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.segment:hover {
+  color: var(--text);
+}
+
+.segment:focus-visible {
+  outline: 2px solid var(--primary-text);
+  outline-offset: 2px;
+}
+
+.segmentOn,
+.segmentOn:hover {
+  background: var(--primary);
+  color: var(--primary-contrast);
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  align-items: end;
+  margin-bottom: var(--space-5);
+  padding: var(--space-4);
+  background: linear-gradient(135deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+@media (min-width: 640px) {
+  .filters {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .filters {
+    grid-template-columns: repeat(3, minmax(0, 220px)) auto;
+    justify-content: start;
+  }
+}
+
+.clearBtn {
+  justify-self: start;
+}
+
+/* ---------- Calendar ---------- */
+.calendar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .calendar {
+    grid-template-columns: repeat(7, minmax(200px, 1fr));
+    overflow-x: auto;
+    padding-bottom: var(--space-2);
+    scroll-snap-type: x proximity;
+  }
+}
+
+@media (min-width: 1280px) {
+  .calendar {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    overflow-x: visible;
+  }
+}
+
+.dayCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  scroll-snap-align: start;
+}
+
+.today {
+  border-color: var(--primary-text);
+  background: linear-gradient(180deg, var(--primary-soft), var(--surface) 120px);
+}
+
+.dayHead {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--fs-md);
+}
+
+.dayName {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.dayNum {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+}
+
+.today .dayNum,
+.today .dayName {
+  color: var(--primary-text);
+}
+
+.dayList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+}
+
+.noClasses {
+  color: var(--text-subtle);
+  font-size: var(--fs-sm);
+  padding: var(--space-2) 0;
+}
+
+/* ---------- List ---------- */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.listGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.groupHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.todayTag {
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+  color: var(--primary-contrast);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+}
+
+.groupCount {
+  margin-left: auto;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.cardGrid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+}

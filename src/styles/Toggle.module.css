@@ -1,0 +1,62 @@
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.track {
+  position: relative;
+  flex-shrink: 0;
+  width: 44px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 99px;
+  background: var(--surface-3);
+  transition: background-color var(--transition), border-color var(--transition);
+}
+
+.track:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--text);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), background-color var(--transition);
+}
+
+.on {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.on .thumb {
+  transform: translateX(18px);
+  background: var(--primary-contrast);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 2px;
+}
+
+.label {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.description {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}

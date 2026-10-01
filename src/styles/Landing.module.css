@@ -1,0 +1,218 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+  overflow-x: clip;
+}
+
+.page :global(section[id]) {
+  scroll-margin-top: calc(var(--navbar-height) + var(--space-3));
+}
+
+/* ---------- Reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 600ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- Perks strip ---------- */
+.perks {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4) 0;
+}
+
+.perkGrid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  gap: var(--space-4);
+}
+
+.perk {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition),
+    opacity 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.perk:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-glow);
+}
+
+.perkIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--primary-soft);
+  color: var(--primary-text);
+  transition: transform var(--transition), background-color var(--transition), color var(--transition);
+}
+
+.perk:hover .perkIcon {
+  transform: rotate(-8deg) scale(1.06);
+  background: var(--primary);
+  color: var(--primary-contrast);
+}
+
+.perkTitle {
+  font-size: var(--fs-lg);
+}
+
+.perkText {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+/* ---------- Final CTA band ---------- */
+.ctaWrap {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-4) var(--space-8);
+}
+
+.cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-6) var(--space-5);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(120deg, var(--primary) 0%, var(--primary-hover) 60%, var(--primary) 100%);
+  color: var(--primary-contrast);
+  box-shadow: var(--shadow-glow);
+}
+
+.ctaArt {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.ctaArt span {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.ctaArt span:nth-child(1) {
+  width: 260px;
+  height: 260px;
+  right: -80px;
+  top: -110px;
+  background: var(--accent);
+  opacity: 0.9;
+}
+
+.ctaArt span:nth-child(2) {
+  width: 160px;
+  height: 160px;
+  right: 120px;
+  bottom: -100px;
+  border: 18px solid var(--primary-contrast);
+  opacity: 0.12;
+}
+
+.ctaArt span:nth-child(3) {
+  width: 120px;
+  height: 120px;
+  left: -40px;
+  bottom: -50px;
+  background: repeating-linear-gradient(45deg, var(--primary-contrast) 0 2px, transparent 2px 10px);
+  opacity: 0.15;
+}
+
+.ctaCopy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 36rem;
+}
+
+.ctaTitle {
+  font-size: clamp(1.75rem, 3.5vw + 1rem, 3rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.ctaText {
+  font-size: var(--fs-md);
+  opacity: 0.8;
+}
+
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.cta .ctaPrimary {
+  background: var(--primary-contrast);
+  color: var(--primary);
+  border-color: var(--primary-contrast);
+}
+
+.cta .ctaPrimary:hover {
+  background: var(--primary-contrast);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.cta .ctaGhost {
+  color: var(--primary-contrast);
+  border-color: var(--primary-contrast);
+}
+
+.cta .ctaGhost:hover {
+  background: color-mix(in srgb, var(--primary-contrast) 10%, transparent);
+  color: var(--primary-contrast);
+}
+
+@media (min-width: 640px) {
+  .perks {
+    padding: var(--space-7) var(--space-6) 0;
+  }
+  .ctaWrap {
+    padding: var(--space-8) var(--space-6);
+  }
+  .cta {
+    padding: var(--space-7);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cta {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-8) var(--space-7);
+  }
+  .ctaActions {
+    flex-shrink: 0;
+  }
+}

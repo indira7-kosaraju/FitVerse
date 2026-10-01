@@ -1,0 +1,131 @@
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6) var(--space-5);
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-4) var(--space-6);
+}
+
+.brandCol {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 22rem;
+}
+
+.tagline {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.colTitle {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-subtle);
+}
+
+.col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.col a {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.col a:hover {
+  color: var(--primary-text);
+  text-decoration: none;
+}
+
+.hours {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+}
+
+.hours div {
+  display: flex;
+  flex-direction: column;
+}
+
+.hours dt {
+  font-weight: 600;
+}
+
+.hours dd {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.socials span {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-4);
+  border-top: 1px solid var(--border);
+  color: var(--text-subtle);
+  font-size: var(--fs-xs);
+}
+
+.legal {
+  display: flex;
+  gap: var(--space-2);
+}
+
+@media (min-width: 640px) {
+  .inner {
+    padding: var(--space-8) var(--space-6) var(--space-6);
+  }
+  .bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    grid-template-columns: 1.6fr repeat(4, minmax(0, 1fr));
+  }
+  .brandCol {
+    grid-column: auto;
+  }
+}

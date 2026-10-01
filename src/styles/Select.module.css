@@ -1,0 +1,47 @@
+.field {
+  composes: field from './Input.module.css';
+}
+
+.label {
+  composes: label from './Input.module.css';
+}
+
+.required {
+  color: var(--accent-text);
+}
+
+.control {
+  position: relative;
+}
+
+.select {
+  composes: input from './Input.module.css';
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.chevron {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.invalid .select {
+  border-color: var(--danger);
+}
+
+.hint {
+  composes: hint from './Input.module.css';
+}
+
+.error {
+  composes: error from './Input.module.css';
+}

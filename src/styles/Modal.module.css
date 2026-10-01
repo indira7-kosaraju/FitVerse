@@ -1,0 +1,161 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: var(--overlay);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 160ms ease-out;
+}
+
+@media (min-width: 640px) {
+  .backdrop {
+    align-items: center;
+    padding: var(--space-5);
+  }
+}
+
+.backdropDrawer {
+  justify-content: flex-end;
+  align-items: stretch;
+  padding: 0 !important;
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 92vh;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  outline: none;
+}
+
+.center {
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  animation: slideUp 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (min-width: 640px) {
+  .center {
+    border-radius: var(--radius-xl);
+    animation: popIn 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .sm {
+    max-width: 420px;
+  }
+
+  .md {
+    max-width: 560px;
+  }
+
+  .lg {
+    max-width: 760px;
+  }
+
+  .xl {
+    max-width: 1000px;
+  }
+}
+
+.drawer {
+  max-height: none;
+  height: 100%;
+  border-radius: 0;
+  animation: slideLeft 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (min-width: 640px) {
+  .drawer {
+    max-width: 480px;
+    border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+  }
+
+  .drawer.lg,
+  .drawer.xl {
+    max-width: 640px;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-5) var(--space-3);
+}
+
+.title {
+  font-size: var(--fs-xl);
+}
+
+.description {
+  margin-top: var(--space-1);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+.close {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.close:hover {
+  background: var(--surface-3);
+  color: var(--text);
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-2) var(--space-5) var(--space-5);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--border);
+  padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.96) translateY(8px);
+    opacity: 0;
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+}

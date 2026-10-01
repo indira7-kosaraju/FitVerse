@@ -1,0 +1,141 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.notice {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--info-soft);
+  color: var(--text);
+  font-size: var(--fs-sm);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .span2 {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- Hours ---------- */
+.hours {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.hourRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border);
+  transition: opacity var(--transition);
+}
+
+.hourRow:last-child {
+  border-bottom: 0;
+}
+
+.closed .times {
+  opacity: 0.5;
+}
+
+.times {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.times > div {
+  width: 130px;
+}
+
+.dash {
+  color: var(--text-subtle);
+}
+
+.error {
+  color: var(--danger);
+  font-size: var(--fs-xs);
+}
+
+@media (min-width: 768px) {
+  .hourRow {
+    grid-template-columns: 220px 1fr;
+    align-items: center;
+  }
+
+  .error {
+    grid-column: 2;
+  }
+}
+
+/* ---------- Save bar ---------- */
+.saveBar {
+  position: sticky;
+  bottom: calc(var(--space-3) + var(--mobile-nav-height));
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.saveBarDirty {
+  border-color: var(--primary-text);
+  box-shadow: var(--shadow-glow);
+}
+
+.saveText {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.saveBarDirty .saveText {
+  color: var(--text);
+}
+
+.saveActions {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+}
+
+@media (min-width: 640px) {
+  .saveBar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 1024px) {
+  .saveBar {
+    bottom: var(--space-4);
+  }
+}

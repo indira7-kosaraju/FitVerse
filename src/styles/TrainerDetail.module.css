@@ -1,0 +1,141 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-6) var(--space-5);
+  text-align: center;
+  background:
+    radial-gradient(circle at 0% 0%, var(--primary-soft) 0%, transparent 55%),
+    radial-gradient(circle at 100% 100%, var(--accent-soft) 0%, transparent 50%),
+    var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.heroAvatar {
+  flex-shrink: 0;
+  box-shadow: var(--shadow-glow);
+}
+
+.heroBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.heroName {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.specs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bio {
+  margin: 0;
+  max-width: 65ch;
+  color: var(--text-muted);
+  line-height: 1.65;
+  white-space: pre-line;
+}
+
+.contact {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--primary-text);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  text-decoration: none;
+  word-break: break-all;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.contact:hover {
+  border-color: var(--primary);
+}
+
+.contact:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.classGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.classGrid > li {
+  display: flex;
+  min-width: 0;
+}
+
+.classGrid > li > * {
+  width: 100%;
+}
+
+.heroSkeleton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-6) var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+}
+
+.heroSkeletonText {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .hero,
+  .heroSkeleton {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    padding: var(--space-7) var(--space-6);
+  }
+
+  .heroBody {
+    align-items: flex-start;
+  }
+
+  .specs {
+    justify-content: flex-start;
+  }
+}

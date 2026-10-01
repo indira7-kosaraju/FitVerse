@@ -1,0 +1,91 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+  gap: var(--space-4);
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: end;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+@media (min-width: 640px) {
+  .filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .searchField {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .filters {
+    grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)) auto;
+  }
+  .searchField {
+    grid-column: auto;
+  }
+}
+
+.clearBtn {
+  justify-self: start;
+}
+
+.dateCell,
+.memberCell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.memberName {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.muted {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.amount {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.invoiceLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  color: var(--primary-text);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background var(--transition);
+}
+
+.invoiceLink:hover {
+  background: var(--primary-soft);
+}
+
+.invoiceLink:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}

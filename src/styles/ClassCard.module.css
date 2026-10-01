@@ -1,0 +1,131 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--type-color, var(--primary));
+  opacity: 0.9;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.booked {
+  border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
+  background:
+    radial-gradient(100% 120% at 100% 0%, var(--primary-soft) 0%, transparent 60%),
+    var(--surface);
+}
+
+.compact {
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.type {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--type-color, var(--primary-text));
+}
+
+.type-hiit,
+.card:has(.type-hiit) {
+  --type-color: var(--accent);
+}
+
+.type-strength,
+.card:has(.type-strength) {
+  --type-color: var(--primary-text);
+}
+
+.type-yoga,
+.card:has(.type-yoga),
+.type-mobility,
+.card:has(.type-mobility),
+.type-pilates,
+.card:has(.type-pilates) {
+  --type-color: var(--chart-4);
+}
+
+.type-cycling,
+.card:has(.type-cycling),
+.type-dance,
+.card:has(.type-dance) {
+  --type-color: var(--info);
+}
+
+.type-boxing,
+.card:has(.type-boxing),
+.type-crossfit,
+.card:has(.type-crossfit) {
+  --type-color: var(--danger);
+}
+
+.title {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+}
+
+.meta {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+.meta li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trainer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+
+.trainer a {
+  color: var(--text);
+}
+
+.trainer a:hover {
+  color: var(--primary-text);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-1);
+}

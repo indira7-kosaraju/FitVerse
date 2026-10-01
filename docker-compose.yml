@@ -1,0 +1,33 @@
+# Self-hosted deployment: app + MongoDB on one machine.
+#   cp .env.production.example .env.production   # fill in secrets
+#   docker compose up -d --build
+# Put a TLS-terminating reverse proxy (Caddy, nginx, Traefik) in front of port 8080.
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: .env.production
+    environment:
+      MONGO_URI: mongodb://mongo:27017/fitverse
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - uploads:/data/uploads
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  uploads:
+  mongo-data:

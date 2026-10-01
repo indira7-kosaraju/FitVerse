@@ -1,0 +1,265 @@
+.builder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.head {
+  display: grid;
+  gap: var(--space-4);
+  align-items: end;
+}
+
+@media (min-width: 768px) {
+  .head {
+    grid-template-columns: minmax(0, 1.4fr) minmax(220px, 1fr);
+  }
+}
+
+.title input {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.completion {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--success-soft);
+}
+
+.weeks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.week {
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: linear-gradient(160deg, var(--primary-soft), transparent 45%), var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.week > section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.weekHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.weekTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+}
+
+.weekNum {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: var(--primary-contrast);
+  font-size: var(--fs-sm);
+}
+
+.weekMeta {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.weekActions {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.days {
+  display: grid;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-items: flex-start;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  transition: border-color var(--transition);
+}
+
+.day:focus-within {
+  border-color: var(--border-strong);
+}
+
+.dayDone {
+  border-left: 4px solid var(--success);
+}
+
+.dayHead {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.dayName {
+  flex: 1;
+  min-width: 0;
+}
+
+.dayName input {
+  font-weight: 600;
+}
+
+.dayHead > span {
+  align-self: center;
+}
+
+.exHeader {
+  display: none;
+}
+
+.exercises {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.exName,
+.exNotes,
+.exActions {
+  grid-column: 1 / -1;
+}
+
+.exNum {
+  min-width: 0;
+}
+
+.exActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-1);
+}
+
+@media (min-width: 768px) {
+  .exHeader,
+  .exRow {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) 84px 84px minmax(0, 2fr) auto;
+    gap: var(--space-2);
+    width: 100%;
+  }
+
+  .exHeader {
+    padding: 0 var(--space-3);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+  }
+
+  .exHeader span:last-child {
+    width: 112px;
+  }
+
+  .exRow {
+    align-items: start;
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+
+  .exName,
+  .exNotes,
+  .exActions {
+    grid-column: auto;
+  }
+}
+
+.addEx {
+  margin-top: calc(var(--space-1) * -1);
+}
+
+.addWeek {
+  align-self: flex-start;
+}
+
+.muted {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+.error {
+  margin: 0;
+  color: var(--danger);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.footerNote {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.footerActions {
+  display: flex;
+  gap: var(--space-2);
+  margin-left: auto;
+}
